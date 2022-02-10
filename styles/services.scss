@@ -22,6 +22,7 @@
         url(../assets/images/remove_tree.jpg);
       background-repeat: no-repeat;
       background-attachment: fixed;
+      background-size: cover;
       @media screen and(max-width: 520px) {
         background-position: left 80% top 20%;
       }
