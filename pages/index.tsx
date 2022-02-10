@@ -10,6 +10,7 @@ import Qualification from "../assets/images/qualification.svg";
 import Oak from "../assets/images/oakhouse.svg";
 import { quotes } from "../helper/quotes";
 import Header from "../components/header";
+import Footer from "../components/footer";
 const HomePage: FC = () => {
   const [activeItem, setactiveItem] = useState(0);
   const [text, setText] = useState(quotes[0]);
@@ -35,7 +36,7 @@ const HomePage: FC = () => {
 
   return (
     <>
-      <Header />
+      <Header homePage={true}/>
       <div className="home-wrapper">
         <div className="home-up-section">
           <div className="form-section">
@@ -60,9 +61,9 @@ const HomePage: FC = () => {
                 <div>
                   <button>Отправить</button>
                 </div>
-                <div>
-                  <button>Наши проеты</button>
-                </div>
+                {/* <div>
+                  <button>Наши проекты</button>
+                </div> */}
               </div>
             </div>
           </div>
@@ -125,6 +126,7 @@ const HomePage: FC = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

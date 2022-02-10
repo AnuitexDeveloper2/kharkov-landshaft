@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from "react";
-import Image from 'next/image';
+import Image from "next/image";
 import Mail from "../../assets/images/mail.svg";
 import Phone from "../../assets/images/3.jpg";
+import { useRouter } from "next/router";
 
 interface ActiveState {
   one: string;
@@ -18,11 +19,25 @@ interface MenuProps {
   goToPage: (item: ActiveItem) => void;
 }
 
-const Header: FC = () => {
-
-  useEffect(()=> {
-
-  })
+interface Props {
+  homePage: boolean;
+}
+const Header: FC<Props> = ({ homePage }) => {
+  const router = useRouter();
+  useEffect(() => {
+    if (router.pathname.includes("services")) {
+      setActive({ ...active, two: "active" });
+    }
+    if (router.pathname.includes("about")) {
+      setActive({ ...active, three: "active" });
+    }
+    if (router.pathname.includes("portfolio")) {
+      setActive({ ...active, four: "active" });
+    }
+    if (router.pathname.includes("contacts")) {
+      setActive({ ...active, five: "active" });
+    }
+  }, []);
   const [active, setActive] = useState<ActiveState>({
     one: "",
     two: "",
@@ -34,29 +49,31 @@ const Header: FC = () => {
   const [show, setShow] = useState(false);
 
   const goToPage = (item: ActiveItem) => {
-    let fakeState = {
-      one: "",
-      two: "",
-      three: "",
-      four: "",
-      five: "",
-    };
-    fakeState[item] = "active";
-    setActive(fakeState);
-    if (item === "one") {
-      window.location.href= '/'
+    if (show || window.innerWidth > 520) {
+      if (item === "one") {
+        window.location.href = "/";
+      }
+      if (item === "two") {
+        window.location.href = "/services";
+      }
+      if (item === "three") {
+        window.location.href = "/about";
+      }
+      if (item === "four") {
+        window.location.href = "/portfolio";
+      }
+      if (item === "five") {
+        window.location.href = "/contacts";
+      }
     }
-    if (item === "two") {
-      window.location.href = '/services'
-    }
-  };  
+  };
 
   const switchMenu = () => {
     setShow(!show);
   };
 
   return (
-    <div className="header-wrapper">
+    <div className={`header-wrapper ${homePage ? "" : "header-background"}`}>
       <div className="information-section">
         <a href="tel:+380971867569" className="phone-section">
           <Image
@@ -91,9 +108,13 @@ const Header: FC = () => {
         <HeaderMenu active={active} goToPage={goToPage} />
       </ul>
       <div className="menu-section-mobile">
-        <div className="hamburger-menu" >
+        <div className="hamburger-menu">
           <input id="menu__toggle" type="checkbox" />
-          <label className="menu__btn" htmlFor="menu__toggle" onClick={switchMenu}>
+          <label
+            className={`menu__btn ${homePage || active.two === 'active'? '' : 'black'}`}
+            htmlFor="menu__toggle"
+            onClick={switchMenu}
+          >
             <span></span>
           </label>
         </div>
@@ -128,12 +149,12 @@ const HeaderMenu: FC<MenuProps> = ({ active, goToPage }) => {
       >
         <span>Почему мы</span>
       </li>
-      <li
+      {/* <li
         className={`${active.four} menu-section-item`}
         onClick={() => goToPage("four")}
       >
         <span>Портфолио</span>
-      </li>
+      </li> */}
       <li
         className={`${active.five} menu-section-item`}
         onClick={() => goToPage("five")}

@@ -117,6 +117,7 @@
         padding: 5%;
         max-height: 300px;
         display: block;
+        z-index: 2;
         li {
           span {
             padding: 10px 5%;
@@ -129,6 +130,9 @@
       content: "\61";
       color: #ffffff;
     }
+  }
+  &.header-background {
+    background-color: #484851;
   }
 }
 
@@ -171,7 +175,7 @@
     width: 26px;
     height: 26px;
     cursor: pointer;
-    z-index: 1;
+    z-index: 3;
   }
   .menu__btn > span,
   .menu__btn > span::before,
@@ -190,6 +194,25 @@
     content: "";
     top: 8px;
   }
+
+  .black > span,
+  .black > span::before,
+  .black > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+  }
+  .black > span::before {
+    content: "";
+    top: -8px;
+  }
+  .black > span::after {
+    content: "";
+    top: 8px;
+  }
+
   #menu__toggle:checked ~ .menu__btn > span {
     transform: rotate(45deg);
   }
@@ -198,6 +221,24 @@
     transform: rotate(0);
   }
   #menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+  #menu__toggle:checked ~ .menu__box {
+    visibility: visible;
+    left: 0;
+  }
+
+  #menu__toggle:checked ~ .black > span {
+    transform: rotate(45deg);
+  }
+  #menu__toggle:checked ~ .black > span::before {
+    background-color: #ffffff;
+    top: 0;
+    transform: rotate(0);
+  }
+  #menu__toggle:checked ~ .black > span::after {
+    background-color: #ffffff;
     top: 0;
     transform: rotate(90deg);
   }

@@ -1,0 +1,73 @@
+.service-wrapper {
+  font-family: "Rowdies", Helvetica, Arial, Lucida, sans-serif;
+  .service-section {
+    padding-top: 25vh !important;
+    padding-right: 10vw !important;
+    padding-bottom: 20vh !important;
+    padding-left: 10vw !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    min-height: 600px;
+    &.top {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url(../assets/images/serviceTop.jpg);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    &.middle {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url(../assets/images/remove_tree.jpg);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      @media screen and(max-width: 520px) {
+        background-position: left 80% top 20%;
+      }
+    }
+    &.middle1 {
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url(../assets/images/plants.jpg);
+      background-attachment: fixed;
+      @media screen and(max-width: 520px) {
+        background-position: left 65% top 20%;
+      }
+    }
+  }
+  .service-section-down {
+    background-image: url(../assets/images/leaf.webp),
+      linear-gradient(
+        107deg,
+        rgba(31, 31, 35, 0.76) 0%,
+        rgba(72, 72, 81, 0.04) 88%
+      );
+    min-height: 358px;
+    padding: 40px 50px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 4px solid #f5f6f7;
+    li {
+      margin: 10px 0;
+    }
+  }
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .description {
+    max-width: 600px;
+    font-size: 22px;
+    line-height: 28px;
+  }
+}

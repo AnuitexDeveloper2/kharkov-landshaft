@@ -1,0 +1,36 @@
+.about-wrapper {
+  font-family: "Rowdies", Helvetica, Arial, Lucida, sans-serif;
+  background-image: url(../assets/images/leaf.webp),
+    linear-gradient(
+      107deg,
+      rgba(31, 31, 35, 0.76) 0%,
+      rgba(72, 72, 81, 0.04) 88%
+    );
+  min-height: 358px;
+  padding: 40px 50px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: 4px solid #f5f6f7;
+  .about-top-section {
+    display: flex;
+    margin-top: 100px;
+    padding:  10px 100px;
+    @media screen and(max-width: 640px) {
+      display: block;
+      padding: 0;
+    }
+    .mica-container {
+      min-width: 200px;
+      margin-right:50px;
+      @media screen and(max-width: 640px) {
+        padding: 0;
+        margin: 0;
+      }
+    }
+    .description {
+      color: #666;
+      line-height: 32px;
+      font-size: 22px;
+    }
+  }
+}
