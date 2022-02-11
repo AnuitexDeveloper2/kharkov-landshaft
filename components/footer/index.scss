@@ -16,6 +16,10 @@
   .phone-footer-section {
     margin-left: 10px;
     color: rgba(100, 165, 7, 0.8);
+    @media screen and(max-width: 520px) {
+      margin: 0;
+      white-space: nowrap;
+    }
   }
   button {
     color: #ffffff !important;

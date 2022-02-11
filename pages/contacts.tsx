@@ -1,6 +1,41 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Header from "../components/header";
+import { sentEmail } from "../helper/email";
 const Contacts: FC = () => {
+  const [successSubmit, setSuccessSubmit] = useState(false);
+  const [error, setError] = useState(false);
+  const [state, setState] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    comments: "",
+    location: "",
+  });
+
+  const handleInputs = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setState({
+      ...state,
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
+  };
+
+  const submitData = () => {
+    if (!state.phone) {
+      setError(true);
+      return;
+    }
+    sentEmail(
+      state.name,
+      state.phone,
+      state.email,
+      state.comments,
+      state.location
+    );
+    setSuccessSubmit(true);
+  };
+
   return (
     <>
       <Header homePage={false} />
@@ -32,41 +67,52 @@ const Contacts: FC = () => {
             </div>
           </div>
         </div>
-        <div className="form-container">
-          <div className="form-container-item">
-            <span>Имя</span>
-            <div>
-              <input type="text" />
+        {successSubmit ? (
+          <div className="success-submit">
+            Мы свяжимся с вами в ближйшее время
+          </div>
+        ) : (
+          <div className="form-container">
+            <div className="form-container-item">
+              <span>Имя</span>
+              <div>
+                <input type="text" name="name" onChange={handleInputs} />
+              </div>
+            </div>
+            <div className="form-container-item">
+              <span>Email</span>
+              <div>
+                <input type="text" name="email" onChange={handleInputs} />
+              </div>
+            </div>
+            <div className="form-container-item">
+              <span>Телефон</span>
+              <div>
+                <input type="text" name="phone" onChange={handleInputs} />
+                {!state.phone && error && (
+                  <span className="error">Введите телефон</span>
+                )}
+              </div>
+            </div>
+            <div className="form-container-item">
+              <span>Адрес выполнения работы</span>
+              <div>
+                <input type="text" name="location" onChange={handleInputs} />
+              </div>
+            </div>
+            <div className="form-container-item">
+              <span>Небольшое описание работы</span>
+              <div>
+                <textarea name="comments" onChange={handleInputs} />
+              </div>
+            </div>
+            <div className="form-button">
+              <button className="contact-form-buttons" onClick={submitData}>
+                Отправить
+              </button>
             </div>
           </div>
-          <div className="form-container-item">
-            <span>Email</span>
-            <div>
-              <input type="text" />
-            </div>
-          </div>
-          <div className="form-container-item">
-            <span>Телефон</span>
-            <div>
-              <input type="text" />
-            </div>
-          </div>
-          <div className="form-container-item">
-            <span>Адрес выполнения работы</span>
-            <div>
-              <input type="text" />
-            </div>
-          </div>
-          <div className="form-container-item">
-            <span>Небольшое описание работы</span>
-            <div>
-              <textarea />
-            </div>
-          </div>
-          <div className="form-button">
-            <button className="contact-form-buttons">Отправить</button>
-          </div>
-        </div>
+        )}
         <div></div>
       </div>
     </>

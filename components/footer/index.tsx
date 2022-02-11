@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC } from "react";
 
 const Footer: FC = () => {
@@ -10,7 +11,7 @@ const Footer: FC = () => {
         </a>
       </div>
       <div>
-        <button>Свяжитесь с нами</button>
+        <button><Link href="/contacts"> Свяжитесь с нами </Link></button>
       </div>
     </div>
   );

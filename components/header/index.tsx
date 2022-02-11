@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import Mail from "../../assets/images/mail.svg";
 import Phone from "../../assets/images/3.jpg";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 
 interface ActiveState {
   one: string;
@@ -51,19 +51,19 @@ const Header: FC<Props> = ({ homePage }) => {
   const goToPage = (item: ActiveItem) => {
     if (show || window.innerWidth > 520) {
       if (item === "one") {
-        window.location.href = "/";
+        Router.push("/");
       }
       if (item === "two") {
-        window.location.href = "/services";
+        Router.push("/services");
       }
       if (item === "three") {
-        window.location.href = "/about";
+        Router.push("/about");
       }
       if (item === "four") {
-        window.location.href = "/portfolio";
+        Router.push("/portfolio");
       }
       if (item === "five") {
-        window.location.href = "/contacts";
+        Router.push("/contacts");
       }
     }
   };
@@ -111,7 +111,9 @@ const Header: FC<Props> = ({ homePage }) => {
         <div className="hamburger-menu">
           <input id="menu__toggle" type="checkbox" />
           <label
-            className={`menu__btn ${homePage || active.two === 'active'? '' : 'black'}`}
+            className={`menu__btn ${
+              homePage || active.two === "active" ? "" : "black"
+            }`}
             htmlFor="menu__toggle"
             onClick={switchMenu}
           >

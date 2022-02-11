@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import Image from "next/image";
+import Head from "next/head";
 
 import Line from "../assets/images/line.svg";
 import Star from "../assets/images/star.svg";
@@ -11,20 +12,30 @@ import Oak from "../assets/images/oakhouse.svg";
 import { quotes } from "../helper/quotes";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { sentEmail } from "../helper/email";
 const HomePage: FC = () => {
   const [activeItem, setactiveItem] = useState(0);
   const [text, setText] = useState(quotes[0]);
+  const [successSubmit, setSuccessSubmit] = useState(false);
+  const [state, setState] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    comments: "",
+  });
+
+  const [error, setError] = useState(false);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const changeQuote = () => {
     const next = activeItem === 3 ? 1 : activeItem + 1;
-    console.log(activeItem);
 
     setactiveItem(next);
     setText(quotes[next]);
   };
 
   useEffect(() => {
+    document.documentElement.lang = "en-us";
     const timeout = setTimeout(() => {
       changeQuote();
     }, 5000);
@@ -34,9 +45,34 @@ const HomePage: FC = () => {
     };
   }, [changeQuote]);
 
+  const handleInputs = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setState({
+      ...state,
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
+  };
+
+  const submitData = () => {
+    if (!state.phone) {
+      setError(true);
+      return;
+    }
+    sentEmail(state.name, state.phone, state.email, state.comments);
+    setSuccessSubmit(true);
+  };
+
   return (
     <>
-      <Header homePage={true}/>
+      <Head>
+        <title>Обрезка деревьев</title>
+        <meta name="keywords" content="деревья, Харьков, обрезка"></meta>
+        <meta name="description" content="обрезка деревьев в Харькове"></meta>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="icon" href="" />
+      </Head>
+      <Header homePage={true} />
       <div className="home-wrapper">
         <div className="home-up-section">
           <div className="form-section">
@@ -44,28 +80,61 @@ const HomePage: FC = () => {
               <div className="home-main-icon-container">
                 <Image className="home-main-icon" src={Oak} alt="" />
               </div>
-              <p>Экспертный уход за деревьями Харькова и области</p>
+              <h1>Экспертный уход за деревьями Харькова и области</h1>
             </div>
-            <div className="home-form">
-              <div className="phone-section">
-                <input type="text" placeholder="Имя" />
-                <input type="text" placeholder="Телефон" />
+            {successSubmit ? (
+              <div className="success-submit">
+                Мы свяжимся с вами в ближйшее время
               </div>
-              <div>
-                <input type="text" placeholder="Email" />
-              </div>
-              <div>
-                <textarea placeholder="Начните разговор сейчас" />
-              </div>
-              <div className="home-form-buttons">
-                <div>
-                  <button>Отправить</button>
+            ) : (
+              <div className="home-form">
+                <div className="phone-section">
+                  <input
+                    type="text"
+                    placeholder="Имя"
+                    name="name"
+                    onChange={handleInputs}
+                  />
+                  <div className="phone-input-section">
+                    <input
+                      type="text"
+                      placeholder="Телефон"
+                      name="phone"
+                      onChange={handleInputs}
+                      className={`${
+                        !state.phone && error ? "error-input" : ""
+                      }`}
+                    />
+                    {!state.phone && error && (
+                      <span className="error">Введите телефон</span>
+                    )}
+                  </div>
                 </div>
-                {/* <div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Email"
+                    name="email"
+                    onChange={handleInputs}
+                  />
+                </div>
+                <div>
+                  <textarea
+                    placeholder="Начните разговор сейчас"
+                    name="comments"
+                    onChange={handleInputs}
+                  />
+                </div>
+                <div className="home-form-buttons">
+                  <div>
+                    <button onClick={submitData}>Отправить</button>
+                  </div>
+                  {/* <div>
                   <button>Наши проекты</button>
                 </div> */}
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div className="line-img">
             <Image src={Line} alt="line" />
@@ -126,7 +195,7 @@ const HomePage: FC = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
