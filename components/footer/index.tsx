@@ -9,6 +9,8 @@ const Footer: FC = () => {
         <a href="tel:+380971867569" className="phone-footer-section">
           096 2530 374
         </a>
+        <a href="https://t.me/@XapbkoB1988">Telega Chat</a>
+        <a href="viber://contact?number=80971867569">Viber</a>
       </div>
       <div>
         <button><Link href="/contacts"> Свяжитесь с нами </Link></button>
