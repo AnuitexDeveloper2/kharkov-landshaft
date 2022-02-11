@@ -68,7 +68,8 @@ const HomePage: FC = () => {
       <Head>
         <title>Обрезка деревьев</title>
         <meta name="keywords" content="деревья, Харьков, обрезка"></meta>
-        <meta name="description" content="обрезка деревьев в Харькове"></meta>
+        <meta property="og:title" content="Обрезка деревьев в Харькове" key="title" />
+        <meta name="description" content="Обрезка деревьев в Харькове"></meta>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="icon" href="" />
       </Head>
