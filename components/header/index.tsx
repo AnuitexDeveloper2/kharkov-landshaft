@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import Mail from "../../assets/images/mail.svg";
 import Phone from "../../assets/images/3.jpg";
+import Viber from "../../assets/images/viber.png";
 import Router, { useRouter } from "next/router";
 
 interface ActiveState {
@@ -74,34 +75,44 @@ const Header: FC<Props> = ({ homePage }) => {
 
   return (
     <div className={`header-wrapper ${homePage ? "" : "header-background"}`}>
-      <div className="information-section">
-        <a href="tel:+380971867569" className="phone-section">
-          <Image
-            src={Phone}
-            className="header-icon"
-            alt="phone"
-            width={45}
-            height={45}
-          />
-          096 2530 374
-        </a>
-        <div>
-          <a
-            className="phone-section"
-            href="mailto: morgenshtern1988@gmail.com"
-            target="_blank"
-            rel="noreferrer"
-          >
+      <div className="">
+        <div className="information-section">
+          <a href="tel:+380971867569" className="phone-section">
             <Image
-              src={Mail}
-              className="header-icon mr-10"
+              src={Phone}
+              className="header-icon"
               alt="phone"
-              width={30}
+              width={45}
               height={45}
             />
-            insertemailhere@xyz.com
+            096 2530 374
           </a>
+          <div>
+            <a
+              className="phone-section"
+              href="mailto: morgenshtern1988@gmail.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                src={Mail}
+                className="header-icon mr-10"
+                alt="phone"
+                width={30}
+                height={45}
+              />
+              oakhousekharkiv@gmail.com
+            </a>
+          </div>
         </div>
+        {/* <div>
+          <div className="social-section">
+            <a href="viber://chat?number=80971867569">
+              <Image width={40} height={40} src={Viber} alt="вайбер" />
+              Viber
+            </a>
+          </div>
+        </div> */}
         <div className="burger"></div>
       </div>
       <ul className="menu-section">

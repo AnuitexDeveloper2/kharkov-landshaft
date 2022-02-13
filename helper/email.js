@@ -1,11 +1,10 @@
 import emailjs from "@emailjs/browser";
 
 export const sentEmail = (name, phone, email, description, location) => {
-  return;
   emailjs
     .send(
-      "service_2qmv8nb",
-      "template_j17tbja",
+      "service_l7nyakn",
+      "template_cjnqfo8",
       {
         name: name,
         phone: phone,
@@ -13,7 +12,7 @@ export const sentEmail = (name, phone, email, description, location) => {
         description: description,
         location: location,
       },
-      "user_MH3KNUNzhOxyH3RAxobWS"
+      "user_pt5xyJAcPvSkCL86MJV9o"
     )
     .then(
       (response) => {

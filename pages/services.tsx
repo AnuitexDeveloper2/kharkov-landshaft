@@ -13,9 +13,11 @@ const Services: FC = () => {
           <div className="description">
             Все наши работы по обрезке выполняются точно и тщательно в
             соответствии с европейскими стандартами{" "}
-            <Link href="https://www.trees.org.uk/Help-Advice/Public/A-brief-guide-to-tree-work-terminology-and-definit">
-              BS3998
-            </Link>{" "}
+            <span className="underline-text">
+              <Link href="https://www.trees.org.uk/Help-Advice/Public/A-brief-guide-to-tree-work-terminology-and-definit">
+                BS3998
+              </Link>
+            </span>{" "}
             для работы с деревьями. Мы тщательно подходим к каждому разрезу и
             всегда заботимся о здоровье дерева в долгосрочной перспективе.
           </div>
