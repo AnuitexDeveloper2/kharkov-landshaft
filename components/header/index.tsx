@@ -90,7 +90,7 @@ const Header: FC<Props> = ({ homePage }) => {
           <div>
             <a
               className="phone-section"
-              href="mailto: morgenshtern1988@gmail.com"
+              href="mailto: oakhousekharkiv@gmail.com"
               target="_blank"
               rel="noreferrer"
             >

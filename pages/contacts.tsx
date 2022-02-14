@@ -57,11 +57,11 @@ const Contacts: FC = () => {
               <div className="description">
                 <a
                   className="phone-section"
-                  href="mailto: morgenshtern1988@gmail.com"
+                  href="mailto: oakhousekharkiv@gmail.com"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  insertemailhere@xyz.com
+                  oakhousekharkiv@gmail.com
                 </a>
               </div>
             </div>
